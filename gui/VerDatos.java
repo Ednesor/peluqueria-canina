@@ -39,7 +39,7 @@ public class VerDatos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabMascotas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -71,10 +71,10 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Datos de mascotas");
 
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnEditarActionPerformed(evt);
             }
         });
 
@@ -100,7 +100,7 @@ public class VerDatos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -112,7 +112,7 @@ public class VerDatos extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -157,9 +157,25 @@ public class VerDatos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        
+        if(tabMascotas.getRowCount() > 0){
+            if(tabMascotas.getSelectedRow() != -1){
+                int num_cliente = Integer.parseInt(String.valueOf(tabMascotas.getValueAt(tabMascotas.getSelectedRow(), 0)));
+                
+                ModificarDatos pantallaModif = new ModificarDatos(num_cliente);
+                pantallaModif.setVisible(true);
+                pantallaModif.setLocationRelativeTo(null);
+                
+                this.dispose();
+            }else {
+                mostrarMensaje("No se seleccionó ninguna mascota :(", "error", "EDITAR MASCOTA");
+            }
+        }else{
+            mostrarMensaje("No hay nada para editar en la tabla :(", "info", "EDITAR MASCOTA");
+        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         cargarTabla();
@@ -224,6 +240,7 @@ public class VerDatos extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new VerDatos().setVisible(true);
             }
@@ -231,8 +248,8 @@ public class VerDatos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -22,7 +22,7 @@ public class Controladora {
         dueno.setCelDueno(celDueno);
         
         Mascota masco = new Mascota();
-        masco.setNombre(nombreDueno);
+        masco.setNombre(nombreMascota);
         masco.setRaza(razaMascota);
         masco.setColor(colorMascota);
         masco.setObservaciones(obsMascota);
@@ -40,6 +40,35 @@ public class Controladora {
 
     public void borrarMascota(int num_cliente) {
         controlPersis.borrarMascota(num_cliente);
+    }
+
+    public Mascota traerMascota(int num_cliente) {
+        return controlPersis.traerMascota(num_cliente);
+    }
+
+    public void modificarMascota(Mascota masco, String nombreMascota, String razaMascota, String colorMascota, String obsMascota, String alergico, String ateEsp, String nombreDueno, String celDueno) {
+        masco.setNombre(nombreMascota);
+        masco.setRaza(razaMascota);
+        masco.setColor(colorMascota);
+        masco.setObservaciones(obsMascota);
+        masco.setAlergico(alergico);
+        masco.setAtencion_especial(ateEsp);
+        
+        controlPersis.modificarMascota(masco);
+        
+        Dueno dueno = this.buscarDueno(masco.getDueno().getId_dueno());
+        dueno.setCelDueno(celDueno);
+        dueno.setNombre(nombreDueno);
+        
+        this.modificarDueno(dueno);
+    }
+
+    private Dueno buscarDueno(int id_dueno) {
+        return controlPersis.buscarDueno(id_dueno);
+    }
+
+    private void modificarDueno(Dueno dueno) {
+        controlPersis.modificarDueno(dueno);
     }
 
 }
