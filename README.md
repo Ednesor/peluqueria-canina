@@ -1,4 +1,8 @@
-![image](https://github.com/Ednesor/peluqueria-canina/assets/77041457/0f0548ca-a727-493d-8e8d-3fb2ca38c92a)# Peluqueria canina
+# Peluqueria canina
+### Tecnologías usadas
+* Java
+* Maven
+* MySQL
 ## Descripción
 Proyecto realizada con Java que consiste en una aplicación de escritorio que guarda datos de mascotas en una base de datos MySQL y permite verlos en cualquier momento. </br>
 Se Utilizó Maven para poder administrar las dependencias necesarias y Swing para realizar la interfaz de usuario.</br>
